@@ -1,0 +1,43 @@
+@import url("../assets/fonts/pretendardvariable.css");
+@import url("../assets/fonts/suit.css");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+:root {
+  --font-pretendard: "Pretendard Variable";
+  --font-suit: "Suit Variable";
+
+  --background: #f2f2f2;
+  --foreground: #222222;
+}
+
+.dark {
+  --background: #222222;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-pretendard), var(--font-suit), sans-serif;
+}
+
+.swal2-popup.swal2-modal {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+
+/* Button */
+button {
+  @apply px-4 py-2 transition rounded cursor-pointer;
+  @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:brightness-75;
+}
+
+/* Table */
