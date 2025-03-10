@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import ToggleSwitch from "@/components/base/ToggleSwitch";
 import lightIcon from "@/assets/icons/light.svg";
@@ -33,8 +34,8 @@ export default function ThemeToggle() {
       falseIcon={lightIcon}
       trueIcon={darkIcon}
       width={16}
-      trueBg={"bg-gray-800"}
-      // falseBg={"#F2F2F2"}
+      trueBg="#3E3E3E"
+      falseBg="#E4E4E4"
     />
   );
 }

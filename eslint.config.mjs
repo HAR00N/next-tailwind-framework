@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "plugin:prettier/recommended"),
+  ...compat.extends("next/core-web-vitals", "plugin:prettier/recommended", "plugin:tailwindcss/recommended"),
   {
     files: ["**/*.{js,mjs,jsx,json,css,scss}"],
 
@@ -29,6 +29,8 @@ const eslintConfig = [
     rules: {
       "react-hooks/rules-of-hooks": "error",
       "prettier/prettier": ["error", prettierConfig],
+      "tailwindcss/no-custom-classname": "off",
+      "tailwindcss/classnames-order": "off",
     },
   },
   {

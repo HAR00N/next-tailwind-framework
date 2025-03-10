@@ -4,21 +4,19 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
 :root {
   --font-pretendard: "Pretendard Variable";
   --font-suit: "Suit Variable";
+  --theme-color: #5d87ff;
 
   --background: #f2f2f2;
+  --surface: #e4e4e4;
   --foreground: #222222;
 }
 
 .dark {
   --background: #222222;
+  --surface: #3e3e3e;
   --foreground: #ffffff;
 }
 
@@ -28,16 +26,44 @@ body {
   font-family: var(--font-pretendard), var(--font-suit), sans-serif;
 }
 
+nav > button.active {
+  background: var(--theme-color);
+  color: white;
+}
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+/* Sweet Alert */
 .swal2-popup.swal2-modal {
   background: var(--background);
   color: var(--foreground);
 }
 
+@layer components {
+  .text-caption {
+    @apply font-light opacity-70;
+  }
 
-/* Button */
-button {
-  @apply px-4 py-2 transition rounded cursor-pointer;
-  @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:brightness-75;
+  /* Button */
+  button {
+    @apply cursor-pointer rounded-lg px-4 py-2 transition;
+    @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:brightness-75;
+    @apply hover:opacity-80;
+  }
+
+  /* Table */
 }
-
-/* Table */

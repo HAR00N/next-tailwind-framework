@@ -8,6 +8,7 @@ const prettierConfig = {
   bracketSpacing: true,
   arrowParens: "always",
   endOfLine: "auto",
+  plugins: ["prettier-plugin-tailwindcss"],
 };
 
 export default prettierConfig;
