@@ -1,0 +1,81 @@
+.tooltip-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 기본 툴팁 스타일 */
+.tooltip {
+  position: absolute;
+  z-index: 50;
+  padding: 8px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  background-color: var(--color-info); /* 배경색 변수 적용 */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* 화살표 스타일 */
+.tooltip::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent;
+}
+
+.tooltip-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-top::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: var(--color-info);
+}
+
+.tooltip-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-bottom::before {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: var(--color-info);
+}
+
+.tooltip-left {
+  right: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-left::before {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: var(--color-info);
+}
+
+.tooltip-right {
+  left: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-right::before {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: var(--color-info);
+}

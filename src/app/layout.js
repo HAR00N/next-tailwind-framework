@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./css/globals.css";
 import { AlertProvider } from "@/context/AlertContext";
 
 export const metadata = {

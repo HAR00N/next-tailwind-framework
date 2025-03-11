@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/layout/Header.jsx";
-import SideMenu from "@/components/layout/SideMenu.jsx";
+import SideMenu from "@/components/layout/sidemenu/SideMenu.jsx";
 
 export default function Layout({ children }) {
   return (

@@ -1,0 +1,4 @@
+.swal2-popup.swal2-modal {
+    background: var(--background);
+    color: var(--foreground);
+}
