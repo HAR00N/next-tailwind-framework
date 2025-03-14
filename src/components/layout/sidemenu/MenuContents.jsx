@@ -16,7 +16,6 @@ export default function MenuContents({ selectedIconName }) {
   };
 
   useEffect(() => {
-    console.log(selectedIconName);
     const selectedItem = SideMenuItems.find((item) => item.name === (selectedIconName || SideMenuItems[0].name));
     setMenuItems(selectedItem.items);
   }, [selectedIconName]);

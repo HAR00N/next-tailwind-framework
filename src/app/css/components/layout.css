@@ -1,0 +1,61 @@
+.side-menu {
+  position: absolute;
+  left: 4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: var(--side-menu-width);
+  height: 100%;
+  background-color: var(--color-background);
+  transition: left 0.4s ease-in-out;
+  z-index: 1;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .side-menu {
+  box-shadow:
+    0 4px 6px -1px rgba(255, 255, 255, 0.08),
+    0 2px 4px -1px rgba(255, 255, 255, 0.08);
+}
+
+.side-menu.closed {
+  left: -16rem;
+}
+
+.side-menu.open {
+  left: 4rem;
+}
+
+.side-menu nav .nav-group .open {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.side-icon-menu nav button.active,
+.side-menu nav .active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.side-icon-menu nav button:not(.active):not(.open):hover,
+.side-menu nav button:not(.active):not(.open):hover {
+  color: var(--color-primary);
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-inline: 5rem;
+  transition: margin-left 0.4s ease-in-out;
+}
+
+.page-wrapper.page-expand {
+  margin-left: 0;
+}
+
+.page-wrapper.page-default {
+  margin-left: var(--side-menu-width);
+}

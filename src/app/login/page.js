@@ -2,17 +2,53 @@
 
 import Image from "next/image";
 import { useAlert } from "@/context/AlertContext";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { handleLoginApi } from "@/hooks/ui/handleLoginApi";
+import BaseLoadingBar from "@/components/base/BaseLoadingBar.jsx";
 
 export default function Login() {
-  const { alert, confirm } = useAlert();
+  const { alert } = useAlert();
+  const [userAccount, setUserAccount] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleAlert = () => {
-    alert("This is a test alert", () => {});
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  });
+
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      const res = await handleLoginApi(userAccount, password);
+
+      if (res.status === 200) {
+        sessionStorage.setItem("userId", res.data.userId);
+        router.push("/twoFactor");
+      } else {
+        setLoading(false);
+
+        if (res.data.error !== undefined) {
+          alert(res.data.error);
+          return;
+        }
+      }
+    } catch (err) {
+      setLoading(false);
+      alert(err.message);
+      console.error(err);
+    }
   };
-  const handleConfirm = () => {
-    confirm("This is the test confirm", (isConfirm) => {
-      alert(String(isConfirm));
-    });
+
+  const handleKeyUp = (event) => {
+    if (event.key === "Enter") handleLogin();
   };
 
   return (
@@ -23,21 +59,33 @@ export default function Login() {
 
           <div className="flex w-full flex-col gap-2">
             <p>ID</p>
-            <input className="w-full rounded-md border-1 px-2 py-3" type="text" />
+            <input
+              type="text"
+              className="input-form w-full"
+              onKeyUp={handleKeyUp}
+              onChange={(e) => setUserAccount(e.target.value)}
+            />
           </div>
 
           <div className="flex w-full flex-col gap-2">
             <p>Password</p>
-            <input className="w-full rounded-md border-1 px-2 py-3" type="text" />
+            <input
+              type="password"
+              className="input-form w-full"
+              onKeyUp={handleKeyUp}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
 
           <div className="mt-auto w-full">
-            <button onClick={handleAlert} className="my-5 h-14 w-full bg-[#5D87FF] text-xl text-white">
+            <button onClick={handleLogin} className="my-5 h-14 w-full bg-[#5D87FF] text-xl text-white">
               Sign In
             </button>
           </div>
         </div>
       </main>
+
+      {loading && <BaseLoadingBar loading={loading} />}
     </div>
   );
 }

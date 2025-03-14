@@ -2,20 +2,24 @@
 
 import Image from "next/image";
 import { useAlert } from "@/context/AlertContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { handleTwoFactorApi } from "@/hooks/ui/handleTwoFactorApi";
+import BaseLoadingBar from "@/components/base/BaseLoadingBar.jsx";
 
 export default function TwoFactor() {
   const { alert, confirm } = useAlert();
   const [code, setCode] = useState(Array(6).fill(""));
+  const [userId, setUserId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleAlert = () => {
-    alert("This is a test alert", () => {});
-  };
-  const handleConfirm = () => {
-    confirm("This is the test confirm", (isConfirm) => {
-      alert(String(isConfirm));
-    });
-  };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUserId = sessionStorage.getItem("userId");
+      if (storedUserId) setUserId(storedUserId);
+    }
+  }, []);
 
   const handleChange = (index, value) => {
     if (!/^\d*$/.test(value)) return;
@@ -32,6 +36,41 @@ export default function TwoFactor() {
         document.getElementById(`digit-${index + arrIdx + 1}`).focus();
       }
     });
+  };
+
+  const handleSubmit = async () => {
+    const sixDigit = code.join(""); // Combine all digits into a single string
+
+    try {
+      const params = {
+        sixDigit: Number(sixDigit),
+        userId: Number(userId),
+      };
+
+      setLoading(true);
+      const res = await handleTwoFactorApi(params.sixDigit, params.userId);
+
+      if (res.status === 200 && (res.data.isFirstLogin || res.data.isPasswordExpired)) {
+        alert(res.message);
+        router.push("/updatePassword");
+      } else if (res.status === 200) {
+        router.push("/dashboard");
+      } else {
+        setLoading(false);
+
+        if (res.data.error !== undefined) {
+          alert(res.data.error);
+          return;
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  };
+
+  const handleKeyUp = (event) => {
+    if (event.key === "Enter") handleSubmit();
   };
 
   return (
@@ -58,6 +97,7 @@ export default function TwoFactor() {
                   className="h-13 w-full rounded-md border-1 px-2 py-2 text-center text-xl"
                   id={`digit-${index}`}
                   value={digit}
+                  onKeyDown={handleKeyUp}
                   onChange={(e) => handleChange(index, e.target.value)}
                 />
               ))}
@@ -65,12 +105,14 @@ export default function TwoFactor() {
           </div>
 
           <div className="mt-auto w-full">
-            <button onClick={handleAlert} className="my-5 h-14 w-full bg-[#5D87FF] text-xl text-white">
+            <button onClick={handleSubmit} className="my-5 h-14 w-full bg-[#5D87FF] text-xl text-white">
               Verify My Account
             </button>
           </div>
         </div>
       </main>
+
+      {loading && <BaseLoadingBar loading={loading} />}
     </div>
   );
 }

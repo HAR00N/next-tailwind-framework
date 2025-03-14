@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useAlert } from "@/context/AlertContext";
-import ToggleTheme from "@/components/layout/ToggleTheme";
+import ToggleTheme from "@/components/layout/header/ToggleTheme.jsx";
 
 export default function Home() {
   const { alert, confirm } = useAlert();

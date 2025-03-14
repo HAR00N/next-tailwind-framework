@@ -1,5 +1,14 @@
 :root.dark {
-    --background: #222222;
-    --surface: #3e3e3e;
-    --foreground: #ffffff;
+  /* Background */
+  --color-background: #222222;
+  --color-surface: #3e3e3e;
+  --color-border: #5c5c5c;
+
+  /* Text */
+  --color-text: #ffffff;
+  --color-text-1: #ffffff;
+  --color-text-2: #f2f2f2;
+  --color-text-3: #e5e5e5;
+  --color-text-4: #d9d9d9;
+  --color-text-5: #cccccc;
 }

@@ -10,7 +10,7 @@ const SideMenuItems = [
     items: [
       { name: "조직 관리", icon: "solar:buildings-2-bold-duotone", path: "/organizations" },
       { name: "관리자 관리", icon: "solar:shield-user-bold", path: "/managers" },
-      { name: "이용자 관리", icon: "solar:user-bold", path: "/users" },
+      { name: "이용자 관리", icon: "solar:users-group-rounded-bold-duotone", path: "/users" },
     ],
   },
   {
@@ -26,7 +26,7 @@ const SideMenuItems = [
     name: "Billings",
     icon: "solar:bill-check-line-duotone",
     items: [
-      { name: "요금제 관리", icon: "solar:atom-line-duotone", path: "/billings/information" },
+      { name: "요금제 정보", icon: "solar:atom-line-duotone", path: "/billings/information" },
       { name: "과금 정보", icon: "solar:chart-line-duotone", path: "/billings/status" },
     ],
   },

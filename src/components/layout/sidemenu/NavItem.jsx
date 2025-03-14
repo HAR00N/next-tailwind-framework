@@ -1,4 +1,3 @@
-"use client";
 import { Icon } from "@iconify/react";
 
 export default function NavItem({ item, pathname, handleRoute }) {
@@ -13,7 +12,10 @@ export default function NavItem({ item, pathname, handleRoute }) {
           <span>{item.name}</span>
         </>
       ) : (
-        <span className="pl-4">ㆍ {item.name}</span>
+        <span className="pl-4">
+          <strong className="mr-2">ㆍ</strong>
+          {item.name}
+        </span>
       )}
     </button>
   );

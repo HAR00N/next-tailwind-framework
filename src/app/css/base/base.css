@@ -1,0 +1,47 @@
+:root {
+  --font-pretendard: "Pretendard Variable";
+  --font-suit: "Suit Variable";
+
+  /* Background */
+  --color-background: #f2f2f2;
+  --color-surface: #e4e4e4;
+  --color-border: #d8d8d8;
+
+  /* Text */
+  --color-text: #222222;
+  --color-text-1: #222222;
+  --color-text-2: #444444;
+  --color-text-3: #666666;
+  --color-text-4: #999999;
+  --color-text-5: #e5e5e5;
+
+  /* Primary */
+  --color-primary: #4f81ff;
+  --color-primary-light: #CBDFFF;
+  --color-primary-dark: #a0c4ff;
+
+  /* Secondary */
+  --color-secondary: #82a9cf;
+  --color-secondary-light: #D0DDEE;
+  --color-secondary-dark: #a1c1d8;
+
+  /* Action Color */
+  --color-success: #46af4a;
+  --color-warning: #ff9700;
+  --color-error: #ff5f4c;
+  --color-info: #5a6a85;
+
+  --color-success-light: #e4f3e4;
+  --color-warning-light: #fff0d9;
+  --color-error-light: #ffe7e5;
+  --color-info-light: #e7e9ed;
+
+  /* Component settings */
+  --side-menu-width: 16rem;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-pretendard), var(--font-suit), sans-serif;
+}

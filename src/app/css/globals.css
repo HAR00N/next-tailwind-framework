@@ -1,67 +1,56 @@
 @import url("../../assets/fonts/pretendardvariable.css");
 @import url("../../assets/fonts/suit.css");
-
+@import url("./base/base.css");
 @import url("./base/dark.css");
-
 @import url("./utilities/utilities.css");
-
 @import url("./components/swal.css");
+
+@import url("./components/layout.css");
 
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --font-pretendard: "Pretendard Variable";
-  --font-suit: "Suit Variable";
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-borderColor: var(--color-border);
 
-  --theme-color: #5d87ff;
-  --theme-active-color: #1e5eae;
+  --color-text-1: var(--color-text-1);
+  --color-text-2: var(--color-text-2);
+  --color-text-3: var(--color-text-3);
+  --color-text-4: var(--color-text-4);
+  --color-text-5: var(--color-text-5);
 
-  --color-info: #46caeb;
-  --color-success: #2ea95c;
-  --color-warning: #f8c20a;
-  --color-error: #ff6692;
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
 
-  --background: #f2f2f2;
-  --surface: #e4e4e4;
-  --foreground: #222222;
-}
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-secondary-dark: var(--color-secondary-dark);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-pretendard), var(--font-suit), sans-serif;
-}
-
-nav .active {
-  color: white;
-}
-
-nav button.active {
-  background: var(--theme-color);
-}
-
-nav button:not(.active):hover {
-  color: var(--theme-color);
-}
-
-nav .nav-group .open {
-  background: var(--theme-active-color);
-  color: white;
-}
-
-.bg-surface {
-  background: var(--surface);
+  --color-success: var(--color-success);
+  --color-success-light: var(--color-success-light);
+  --color-warning: var(--color-warning);
+  --color-warning-light: var(--color-warning-light);
+  --color-error: var(--color-error);
+  --color-error-light: var(--color-error-light);
+  --color-info: var(--color-info);
+  --color-info-light: var(--color-info-light);
 }
 
 @layer components {
-  /* Button */
-  button {
-    @apply cursor-pointer rounded-lg px-4 py-2 transition;
-    @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:brightness-75;
-    @apply hover:opacity-80;
-  }
+  button,
+  .btn {
+    @apply cursor-pointer;
 
-  /* Table */
+    @variant hover {
+      @apply opacity-75;
+    }
+
+    @variant disabled {
+      @apply cursor-not-allowed opacity-60;
+    }
+  }
 }

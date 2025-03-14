@@ -3,19 +3,17 @@ import { Icon } from "@iconify/react";
 import NavItem from "./NavItem.jsx";
 
 export default function NavGroup({ group, pathname, handleRoute }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(pathname.includes(group.path));
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if (pathname.includes(group.path)) setIsOpen(true);
-  }, []);
+    setIsOpen(pathname.includes(group.path));
+  }, [pathname]);
 
   return (
     <div className="nav-group">
       <button
-        className={`flex w-full items-center gap-2 rounded-md bg-transparent px-3 py-2 text-left transition-colors ${
-          isOpen ? "open bg-gray-100 dark:bg-gray-800" : ""
-        }`}
+        className={`flex w-full items-center gap-2 rounded-md bg-transparent px-3 py-2 text-left transition-colors ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <Icon icon={group.icon} height={24} />

@@ -1,19 +1,15 @@
-"use client";
-
 import MenuItems from "./SideMenuItems.js";
-import Tooltip from "@/components/base/Tooltip.jsx";
+import Tooltip from "@/components/ui/Tooltip.jsx";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation.js";
 
-export default function SideIconMenu({ onChange }) {
+export default function SideIconMenu({ onChange, onToggleMenu }) {
   const [activeItem, setActiveItem] = useState(null);
 
   const pathname = usePathname();
   const findActiveMenu = () => {
-    return MenuItems.find((menu) =>
-        menu.items.some((item) => pathname.includes(item.path))
-    );
+    return MenuItems.find((menu) => menu.items.some((item) => pathname.includes(item.path)));
   };
 
   useEffect(() => {
@@ -28,7 +24,11 @@ export default function SideIconMenu({ onChange }) {
   };
 
   return (
-    <aside className="bg-surface flex w-16 flex-col p-2">
+    <aside className="side-icon-menu bg-surface z-10 flex w-16 flex-col items-center p-2 pt-8">
+      <button onClick={onToggleMenu}>
+        <Icon icon="solar:hamburger-menu-line-duotone" height={24} />
+      </button>
+
       <nav className="mt-4 flex flex-col gap-2">
         {MenuItems.map((item, index) => (
           <Tooltip key={index} text={item.name} position="right">

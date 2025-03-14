@@ -1,9 +1,11 @@
+"use client";
+
 import Layout from "@/components/layout/AppLayout.jsx";
 
-export default function Guide({}) {
+export default function Animations() {
   return (
     <Layout>
-      <p> UI Guide</p>
+      <p>Animations</p>
     </Layout>
   );
 }
